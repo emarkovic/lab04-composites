@@ -7,17 +7,17 @@ var DomElement = (function () {
     DomElement.prototype.addChild = function (child) {
         this.children.push(child);
     };
-    DomElement.prototype.print = function (i) {
-        if (i === void 0) { i = 0; }
-        var spaces = '';
-        for (var k = 0; k < i; k++) {
-            spaces += ' ';
+    DomElement.prototype.print = function (spaces) {
+        if (spaces === void 0) { spaces = 0; }
+        var space = '';
+        for (var i = 0; i < spaces; i++) {
+            space += ' ';
         }
-        console.log(spaces + '<' + this.tagName + '>');
+        console.log(space + '<' + this.tagName + '>');
         this.children.forEach(function (child, i) {
-            child.print(i);
+            child.print(spaces + 4);
         });
-        console.log(spaces + '</' + this.tagName + '>');
+        console.log(space + '</' + this.tagName + '>');
     };
     return DomElement;
 }());
@@ -26,8 +26,13 @@ var TextNode = (function () {
     function TextNode(text) {
         this.text = text;
     }
-    TextNode.prototype.print = function () {
-        console.log(this.text);
+    TextNode.prototype.print = function (spaces) {
+        if (spaces === void 0) { spaces = 0; }
+        var space = '';
+        for (var i = 0; i < spaces; i++) {
+            space += ' ';
+        }
+        console.log(space + this.text);
     };
     return TextNode;
 }());

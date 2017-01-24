@@ -1,8 +1,9 @@
 interface IDomElement {
-  print();
+  	print(spaces:number);
 }
 
 export class DomElement implements IDomElement {
+	private spaces:number;
 	private tagName:string;
 	private children:IDomElement[];	
 
@@ -15,12 +16,16 @@ export class DomElement implements IDomElement {
 		this.children.push(child);
 	}
 
-	print() {
-		console.log('<' + this.tagName + '>');
+	print(spaces:number = 0) {
+		let space:string = '';
+		for (let i = 0; i < spaces; i++) {
+			space += ' ';
+		}
+		console.log(space + '<' + this.tagName + '>');
 		this.children.forEach((child, i) => {						
-			child.print();			
+			child.print(spaces + 4);			
 		});
-		console.log('</' + this.tagName + '>');
+		console.log(space + '</' + this.tagName + '>');
 	}
 }
 
@@ -31,15 +36,19 @@ export class TextNode implements IDomElement {
 		this.text = text;
 	}
 
-	print() {
-		console.log(this.text);
+	print(spaces:number = 0) {
+		let space:string = '';
+		for (let i = 0; i < spaces; i++) {
+			space += ' ';
+		}
+		console.log(space + this.text);
 	}
 }
 /*
-<html>
-	<div>
-		<p>
-			Hi, I am a TextNode being printed!
+<html> 													
+	<div>												
+		<p>												
+			Hi, I am a TextNode being printed!			
 		</p>
 		<p>
 			TextNode == leaf

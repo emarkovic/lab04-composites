@@ -22,7 +22,7 @@ export class DomElement implements IDomElement {
 			space += ' ';
 		}
 		console.log(space + '<' + this.tagName + '>');
-		this.children.forEach((child, i) => {						
+		this.children.forEach(child => {						
 			child.print(spaces + 4);			
 		});
 		console.log(space + '</' + this.tagName + '>');

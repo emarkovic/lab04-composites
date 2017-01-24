@@ -2,6 +2,14 @@ interface IDomElement {
   	print(spaces:number);
 }
 
+function getSpaces(numSpaces:number) {
+	let spaces = '';
+	for (let i = 0; i < numSpaces; i++) {
+			spaces += ' ';
+	}
+	return spaces;
+}
+
 export class DomElement implements IDomElement {
 	private spaces:number;
 	private tagName:string;
@@ -17,10 +25,7 @@ export class DomElement implements IDomElement {
 	}
 
 	print(spaces:number = 0) {
-		let space:string = '';
-		for (let i = 0; i < spaces; i++) {
-			space += ' ';
-		}
+		let space:string = getSpaces(spaces);
 		console.log(space + '<' + this.tagName + '>');
 		this.children.forEach(child => {						
 			child.print(spaces + 4);			
@@ -37,10 +42,7 @@ export class TextNode implements IDomElement {
 	}
 
 	print(spaces:number = 0) {
-		let space:string = '';
-		for (let i = 0; i < spaces; i++) {
-			space += ' ';
-		}
+		let space:string = getSpaces(spaces);
 		console.log(space + this.text);
 	}
 }

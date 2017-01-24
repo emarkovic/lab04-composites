@@ -1,4 +1,11 @@
 "use strict";
+function getSpaces(numSpaces) {
+    var spaces = '';
+    for (var i = 0; i < numSpaces; i++) {
+        spaces += ' ';
+    }
+    return spaces;
+}
 var DomElement = (function () {
     function DomElement(tagName) {
         this.tagName = tagName;
@@ -9,12 +16,9 @@ var DomElement = (function () {
     };
     DomElement.prototype.print = function (spaces) {
         if (spaces === void 0) { spaces = 0; }
-        var space = '';
-        for (var i = 0; i < spaces; i++) {
-            space += ' ';
-        }
+        var space = getSpaces(spaces);
         console.log(space + '<' + this.tagName + '>');
-        this.children.forEach(function (child, i) {
+        this.children.forEach(function (child) {
             child.print(spaces + 4);
         });
         console.log(space + '</' + this.tagName + '>');
@@ -28,10 +32,7 @@ var TextNode = (function () {
     }
     TextNode.prototype.print = function (spaces) {
         if (spaces === void 0) { spaces = 0; }
-        var space = '';
-        for (var i = 0; i < spaces; i++) {
-            space += ' ';
-        }
+        var space = getSpaces(spaces);
         console.log(space + this.text);
     };
     return TextNode;
